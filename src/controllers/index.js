@@ -1,0 +1,10 @@
+module.exports.bookcontroller = require("./bus.controller");
+module.exports.bookcontroller = require("./grocery.controller");
+module.exports.bookcontroller = require("./hotel.controller");
+module.exports.bookcontroller = require("./jewellery.controller");
+module.exports.bookcontroller = require("./movie.controller");
+module.exports.bookcontroller = require("./music.controller");
+module.exports.bookcontroller = require("./pharmacy.controller");
+module.exports.bookcontroller = require("./school.controller");
+module.exports.bookcontroller = require("./stationery.controller");
+module.exports.bookcontroller = require("./travel.controller");
