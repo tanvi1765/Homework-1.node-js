@@ -49,6 +49,25 @@ const getstationeryDetails = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+/** stationery details update by id */
+const updateDetails = async (req, res) => {
+  try {
+    const stationeryId = req.params.userId;
+    const stationeryExists = await stationeryservice.getstationeryById(stationeryId);
+    if (!stationeryExists) {
+      throw new Error("stationery not found!");
+    }
+
+    await stationeryservice.updateDetails(stationeryId, req.body);
+
+    res
+      .status(200)
+      .json({ success: true, message: "stationery details update successfully!" });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 /** Delete stationery user */
 const deletestationery = async (req, res) => {
   try {
@@ -73,4 +92,5 @@ module.exports = {
    getstationerylist,
    getstationeryDetails,
    deletestationery,
+   updateDetails
 };

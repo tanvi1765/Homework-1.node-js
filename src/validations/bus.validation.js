@@ -25,9 +25,21 @@ const getDetails = {
     busId: Joi.string().required().trim(),
   }),
 };
+/** bus details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    bus_name: Joi.string().trim(),
+    bus_type: Joi.string().trim(),
+    Payment_type: Joi.string().trim(),
+  }),
+};
 
 module.exports = {
   createBus,
   getDetails,
   getBusList,
+  updateDetails
 };

@@ -1,40 +1,17 @@
 const { music } = require("../models");
 
-/**
- * Create music
- * @param {object} reqBody
- * @returns {Promise<userId>}
- */
 const createmusic = async (reqBody) => {
   return music.create(reqBody);
 };
-
-/**
- * Get music user list
- * @param {object} filter
- * @param {object} options
- * @returns {Promise<music>}
- */
 const getmusiclist = async (filter, options) => {
-  const skip = (Number(options.page || 1) - 1) * Number(options.limit || 10);
-
-  return music.find(filter).skip(skip).limit(options.limit).select("-password");
+  return music.find({$or:{is_active:true}})
 };
-
-/**
- * Get  music user details by id
- * @param {ObjectId} userId
- * @returns {Promise<User>}
- */
 const getmusicId = async (userId) => {
-  return music.findById(userId);
+  return music.findById(userId,({$set:updateBody}));
 };
-
-/**
- * Delete  music user
- * @param {ObjectId} userId
- * @returns {Promise<User>}
- */
+const updateDetails = async (userId, updateBody) => {
+  return music.findByIdAndUpdate(userId, { $set: updateBody });
+};
 const deletemusic = async (userId) => {
   return music.findByIdAndDelete(userId);
 };
@@ -44,4 +21,5 @@ module.exports = {
   getmusiclist,
   getmusicId,
   deletemusic,
+  updateDetails
 };

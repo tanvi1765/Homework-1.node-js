@@ -1,40 +1,18 @@
 const { bus } = require("../services");
+const  {busvalidation}= require("../validations");
 
-/**
- * Create bus
- * @param {object} reqBody
- * @returns {Promise<userId>}
- */
 const createbus = async (reqBody) => {
   return bus.create(reqBody);
 };
-
-/**
- * Get bus user list
- * @param {object} filter
- * @param {object} options
- * @returns {Promise<bus>}
- */
 const getbuslist = async (filter, options) => {
-  const skip = (Number(options.page || 1) - 1) * Number(options.limit || 10);
-
-  return bus.find(filter).skip(skip).limit(options.limit).select("-password");
-};
-
-/**
- * Get  bus user details by id
- * @param {ObjectId} userId
- * @returns {Promise<User>}
- */
+  return bus.find( {$or:[{is_active:true}]}
+)};
 const getbusId = async (userId) => {
   return bus.findById(userId);
 };
-
-/**
- * Delete  bus user
- * @param {ObjectId} userId
- * @returns {Promise<User>}
- */
+const updateDetails = async (userId, updateBody) => {
+  return bus.findByIdAndUpdate(userId, { $set: updateBody });
+};
 const deletebus = async (userId) => {
   return bus.findByIdAndDelete(userId);
 };
@@ -44,4 +22,6 @@ module.exports = {
   getbuslist,
   getbusId,
   deletebus,
+  updateDetails
 };
+

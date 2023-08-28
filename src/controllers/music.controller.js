@@ -49,6 +49,25 @@ const getmusicDetails = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+/** music details update by id */
+const updateDetails = async (req, res) => {
+  try {
+    const musicId = req.params.userId;
+    const musicExists = await musicservice.getmusicById(musicId);
+    if (!musicExists) {
+      throw new Error("music not found!");
+    }
+
+    await musicservice.updateDetails(musicId, req.body);
+
+    res
+      .status(200)
+      .json({ success: true, message: "music details update successfully!" });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 /** Delete music user */
 const deletemusic = async (req, res) => {
   try {
@@ -73,4 +92,5 @@ module.exports = {
    getmusiclist,
    getmusicDetails,
    deletemusic,
+   updateDetails
 };

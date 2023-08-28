@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const busRoute = require("./bus.route");
+const busRoute =require("./bus.route");
 router.use("/bus", busRoute);
 
 const groceryRoute =require("./grocery.route");

@@ -49,6 +49,25 @@ const getjewelleryDetails = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+/** jewellery details update by id */
+const updateDetails = async (req, res) => {
+  try {
+    const jewelleryId = req.params.userId;
+    const jewelleryExists = await jewelleryservice.getjewelleryById(jewelleryId);
+    if (!jewelleryExists) {
+      throw new Error("jewellery not found!");
+    }
+
+    await jewelleryservice.updateDetails(jewelleryId, req.body);
+
+    res
+      .status(200)
+      .json({ success: true, message: "jewellery details update successfully!" });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 /** Delete jewellery user */
 const deletejewellery = async (req, res) => {
   try {
@@ -73,4 +92,5 @@ module.exports = {
    getjewellerylist,
    getjewelleryDetails,
    deletejewellery,
+   updateDetails
 };

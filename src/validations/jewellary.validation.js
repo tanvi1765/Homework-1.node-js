@@ -28,8 +28,23 @@ const getDetails = {
   }),
 };
 
+/** jewellery details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    jewellery_name: Joi.string().trim(),
+    jewellery_type: Joi.string().trim(),
+    jewellery_material: Joi.string().trim(),
+    metal_type: Joi.string().trim(),
+  }),
+};
+
+
 module.exports = {
   createJewellary,
   getDetails,
   getJewellaryList,
+  updateDetails
 };

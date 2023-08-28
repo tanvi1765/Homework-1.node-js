@@ -27,8 +27,23 @@ const getmovieDteails = {
   }),
 };
 
+/** movie details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    movie_name: Joi.string().trim(),
+    movie_language: Joi.string().trim(),
+    movie_rumtime: Joi.string().trim(),
+    Payment_type: Joi.string().trim(),
+  }),
+};
+
+
 module.exports = {
   createmovie,
   getmovieDteails,
   getmovielist,
+  updateDetails
 };

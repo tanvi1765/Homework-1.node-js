@@ -28,9 +28,22 @@ const getDetails = {
     hotelId: Joi.string().required().trim(),
   }),
 };
+/** hotel details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    hotel_name: Joi.string().trim(),
+    hotel_type: Joi.string().trim(),
+    city: Joi.string().trim(),
+    room_type: Joi.string().trim(),
+  }),
+};
 
 module.exports = {
   createHotel,
   getDetails,
   getHotelList,
+  updateDetails
 };

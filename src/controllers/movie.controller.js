@@ -49,6 +49,25 @@ const getmovieDetails = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+/** movie details update by id */
+const updateDetails = async (req, res) => {
+  try {
+    const movieId = req.params.userId;
+    const movieExists = await movieservice.getmovieById(movieId);
+    if (!movieExists) {
+      throw new Error("movie not found!");
+    }
+
+    await movieservice.updateDetails(movieId, req.body);
+
+    res
+      .status(200)
+      .json({ success: true, message: "movie details update successfully!" });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 /** Delete movie user */
 const deletemovie = async (req, res) => {
   try {
@@ -73,4 +92,5 @@ module.exports = {
    getmovielist,
    getmovieDetails,
    deletemovie,
+   updateDetails
 };

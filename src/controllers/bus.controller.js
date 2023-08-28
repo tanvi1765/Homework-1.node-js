@@ -49,6 +49,25 @@ const getbusDetails = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+/** bus details update by id */
+const updateDetails = async (req, res) => {
+  try {
+    const busId = req.params.userId;
+    const busExists = await busservice.getbusById(busId);
+    if (!busExists) {
+      throw new Error("bus not found!");
+    }
+
+    await busservice.updateDetails(busId, req.body);
+
+    res
+      .status(200)
+      .json({ success: true, message: "bus details update successfully!" });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 /** Delete bus user */
 const deletebus = async (req, res) => {
   try {
@@ -73,4 +92,5 @@ module.exports = {
    getbuslist,
    getbusDetails,
    deletebus,
+   updateDetails
 };

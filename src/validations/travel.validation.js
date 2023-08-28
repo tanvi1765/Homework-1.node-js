@@ -29,9 +29,22 @@ const gettravelDteails = {
     travelId: Joi.string().required().trim(),
   }),
 };
+/** travel details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    travel_company: Joi.string().trim(),
+    company_name: Joi.string().trim(),
+    traveler_details: Joi.string().trim(),
+    holiday_place: Joi.string().trim(),
+  }),
+};
 
 module.exports = {
   createtravel,
   gettravelDteails,
   gettravellist,
+  updateDetails
 };

@@ -28,8 +28,23 @@ const getmusicDteails = {
   }),
 };
 
+/** music details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    music_title: Joi.string().trim(),
+    music_Artist: Joi.string().trim(),
+    music_language: Joi.string().trim(),
+    music_duration: Joi.string().trim(),
+  }),
+};
+
+
 module.exports = {
   createmusic,
   getmusicDteails,
   getmusiclist,
+  updateDetails
 };

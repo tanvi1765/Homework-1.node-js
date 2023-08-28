@@ -1,40 +1,17 @@
 const { school } = require("../models");
 
-/**
- * Create school
- * @param {object} reqBody
- * @returns {Promise<userId>}
- */
 const createschool = async (reqBody) => {
   return school.create(reqBody);
 };
-
-/**
- * Get school user list
- * @param {object} filter
- * @param {object} options
- * @returns {Promise<school>}
- */
 const getschoollist = async (filter, options) => {
-  const skip = (Number(options.page || 1) - 1) * Number(options.limit || 10);
-
-  return school.find(filter).skip(skip).limit(options.limit).select("-password");
+  return school.find({$or:{mediume_type:gujarati}})
 };
-
-/**
- * Get  school user details by id
- * @param {ObjectId} userId
- * @returns {Promise<User>}
- */
 const getschoolId = async (userId) => {
-  return school.findById(userId);
+  return school.findById(userId,({$set:updateBody}));
 };
-
-/**
- * Delete  school user
- * @param {ObjectId} userId
- * @returns {Promise<User>}
- */
+const updateDetails = async (userId, updateBody) => {
+  return school.findByIdAndUpdate(userId, { $set: updateBody });
+};
 const deleteschool = async (userId) => {
   return school.findByIdAndDelete(userId);
 };
@@ -44,4 +21,5 @@ module.exports = {
   getschoollist,
   getschoolId,
   deleteschool,
+  updateDetails
 };

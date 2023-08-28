@@ -27,9 +27,23 @@ const getDetails = {
     groceryId: Joi.string().required().trim(),
   }),
 };
+/** grocery details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    grocery_name: Joi.string().trim(),
+    category: Joi.string().trim(),
+    grocery_quantity: Joi.string().trim(),
+    Purchase_grocery: Joi.string().trim(),
+  }),
+};
+
 
 module.exports = {
   createGrocery,
   getDetails,
   getGroceryList,
+  updateDetails
 };

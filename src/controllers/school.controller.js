@@ -49,6 +49,25 @@ const getschoolDetails = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+/** school details update by id */
+const updateDetails = async (req, res) => {
+  try {
+    const schoolId = req.params.userId;
+    const schoolExists = await schoolservice.getschoolById(schoolId);
+    if (!schoolExists) {
+      throw new Error("school not found!");
+    }
+
+    await schoolservice.updateDetails(schoolId, req.body);
+
+    res
+      .status(200)
+      .json({ success: true, message: "school details update successfully!" });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 /** Delete school user */
 const deleteschool = async (req, res) => {
   try {
@@ -73,4 +92,5 @@ module.exports = {
    getschoollist,
    getschoolDetails,
    deleteschool,
+   updateDetails
 };

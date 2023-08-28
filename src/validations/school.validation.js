@@ -26,9 +26,22 @@ const getschoolDteails = {
     schoolId: Joi.string().required().trim(),
   }),
 };
+/** school details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    school_name: Joi.string().trim(),
+    mediume_type: Joi.string().trim(),
+    principal_name: Joi.string().trim(),
+    area: Joi.string().trim(),
+  }),
+};
 
 module.exports = {
   createschool,
   getschoolDteails,
   getschoollist,
+  updateDetails
 };

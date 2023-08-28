@@ -49,6 +49,25 @@ const gethotelDetails = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+/** hotel details update by id */
+const updateDetails = async (req, res) => {
+  try {
+    const hotelId = req.params.userId;
+    const hotelExists = await hotelservice.gethotelById(hotelId);
+    if (!hotelExists) {
+      throw new Error("hotel not found!");
+    }
+
+    await hotelservice.updateDetails(hotelId, req.body);
+
+    res
+      .status(200)
+      .json({ success: true, message: "hotel details update successfully!" });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
+};
 /** Delete hotel user */
 const deletehotel = async (req, res) => {
   try {
@@ -73,4 +92,5 @@ module.exports = {
    gethotellist,
    gethotelDetails,
    deletehotel,
+   updateDetails
 };

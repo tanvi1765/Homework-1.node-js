@@ -26,8 +26,21 @@ const getstationeryDteails = {
   }),
 };
 
+/** stationery details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    stationery_name: Joi.string().trim(),
+    item: Joi.string().trim(),
+    bill_no: Joi.string().trim(),
+  }),
+};
+
 module.exports = {
   createstationery,
   getstationeryDteails,
   getstationerylist,
+  updateDetails
 };

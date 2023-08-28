@@ -26,8 +26,23 @@ const getpharmacyDteails = {
   }),
 };
 
+/** pharmacy details update by id */
+const updateDetails = {
+  params: Joi.object().keys({
+    userId: Joi.string().required().trim(),
+  }),
+  body: Joi.object().keys({
+    medicine_name: Joi.string().trim(),
+    Dosage_Form: Joi.string().trim(),
+    Payment_type: Joi.string().trim(),
+  }),
+};
+
+
+
 module.exports = {
   createpharmacy,
   getpharmacyDteails,
   getpharmacylist,
+  updateDetails
 };
