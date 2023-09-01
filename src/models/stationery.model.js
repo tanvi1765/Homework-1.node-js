@@ -11,12 +11,16 @@ const stationerySchema = new mongoose.Schema({
     bill_no: {
       type: Number,
     },
+    school:{
+      type:mongoose.Types.ObjectId,
+      ref:"school",
+    },
     is_active: {
       type: Boolean,
       default: true,
-  },
-  },
-  {
+    },
+    },
+    {
     timestamps: true,
     versionKey: false,
   }

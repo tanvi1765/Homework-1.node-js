@@ -1,5 +1,5 @@
 const express = require("express");
-// const { hotelValidation } = require("../../validations");
+const { hotelValidation } = require("../../validations");
 const { hotelController } = require("../../controllers");
 const validate = require("../../middlewares/validate");
 

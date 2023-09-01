@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const  busSchema= new mongoose.Schema({
-    bus_name:{
+const  medicalSchema= new mongoose.Schema({
+    shop_name:{
         type: String,
         trim:true,
     },
-    bus_type:{
+    shop_type:{
         type: String,
         trim:true
     },
@@ -12,9 +12,9 @@ const  busSchema= new mongoose.Schema({
         type: String,
         trim:true
     },
-    travel:{
+    pharmacy:{
         type:mongoose.Types.ObjectId,
-        ref:"travel",
+        ref:"pharmacy",
     },
     is_active: {
         type: Boolean,
@@ -26,5 +26,6 @@ const  busSchema= new mongoose.Schema({
         versionKey: false,
     }
     );
-    const bus= mongoose.model("bus", busSchema);
-    module.exports = bus;
+    const medical= mongoose.model("medical", medicalSchema);
+    module.exports = medical
+    ;

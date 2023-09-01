@@ -16,6 +16,10 @@ const  schoolschema=new mongoose.Schema({
         type:String,
         trim:true
     },
+    stationery:{
+      type:mongoose.Types.ObjectId,
+      ref:"stationery",
+    },
     is_active: {
         type: Boolean,
         default: true

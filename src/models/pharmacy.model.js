@@ -12,6 +12,10 @@ const  pharmacyschema=new mongoose.Schema({
         type:String,
         trim:true
     },
+    medical:{
+        type:mongoose.Types.ObjectId,
+        ref:"medical",
+    },
     is_active: {
         type: Boolean,
         default: true,
