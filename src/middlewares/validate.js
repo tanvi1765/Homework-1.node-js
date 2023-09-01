@@ -1,5 +1,4 @@
 const Joi = require("joi");
-const validate = require("../../middlewares/validate");
 
 const validate = (schema) => (req, res, next) => {
     const { value, error } = Joi.compile(validSchema)
